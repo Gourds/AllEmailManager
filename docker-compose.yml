@@ -6,15 +6,13 @@ services:
     container_name: emailhub-app
     ports:
       - "3000:3000"
-    env_file:
-      - .env
     environment:
-      NODE_ENV: production
-      PORT: 3000
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: ${PORT:-3000}
       DATABASE_URL: ${DATABASE_URL:-file:./dev.db}
       NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
-      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-CHANGE_ME_BEFORE_PROD}
-      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-CHANGE_ME_BEFORE_PROD}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-local-dev-nextauth-secret-key-1234567890}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef}
       UPLOAD_DIR: ${UPLOAD_DIR:-/data/uploads}
       MAX_UPLOAD_SIZE: ${MAX_UPLOAD_SIZE:-10485760}
       LOG_LEVEL: ${LOG_LEVEL:-info}
